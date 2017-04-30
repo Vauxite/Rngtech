@@ -52,24 +52,20 @@ public class PacketRequestMachine implements IMessage {
 		public IMessage onMessage(PacketRequestMachine message, MessageContext ctx) {
 			
 			World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(message.Dimension);
-			
-			TileEntityMachine machine = (TileEntityMachine)world.getTileEntity(message.Pos);
-			if (machine != null) {
-				//Send Value to client
-				if(message.Value == -1){
-					int newValue = machine.getField(message.Field, message.Slot);
-					return new PacketUpdateMachine(message.Pos,message.Slot,message.Field,newValue);
-				}else{
-					//Change value on server
-					machine.setField(message.Field, message.Slot, message.Value);
-					return new PacketUpdateMachine(message.Pos,message.Slot,message.Field,message.Value);
+			FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(new Runnable(){
+				@Override
+				public void run(){
+					TileEntityMachine machine = (TileEntityMachine)world.getTileEntity(message.Pos);
+					if (machine != null) {
+						//Change value on server
+						machine.setField(message.Field, message.Slot, message.Value);
+					}
 				}
-			} else {
-				return null;
-			}
-			
+				
+			});
+			return null;
 		}
-		
 	}
-
 }
+
+

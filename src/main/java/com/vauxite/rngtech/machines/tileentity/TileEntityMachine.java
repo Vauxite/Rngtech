@@ -418,13 +418,6 @@ public class TileEntityMachine extends TileEntity implements ITickable, ISidedIn
 				return this.progress[slot];
 			case 1:
 				return this.processTime[slot];
-				/*
-				if ( this.getRecipe(this.ProcessInventory.getStackInSlot(slot)) != null){
-					
-					return this.getRecipe(this.ProcessInventory.getStackInSlot(slot)).ProcessTime();
-				}else{
-					return 0;
-				}*/
 			case 2:
 				return this.assignedForce[slot];
 			default:
@@ -447,7 +440,6 @@ public class TileEntityMachine extends TileEntity implements ITickable, ISidedIn
 				this.processTime[slot] = value;
 				return 0;
 			case 2:
-				//System.out.println("Sending from  "+FMLCommonHandler.instance().getEffectiveSide()+" with payload:SLOT #"+slot+" field #"+field + " to "+ value);
 				this.setAssignedForce(slot, value);
 				return 0;
 			default:

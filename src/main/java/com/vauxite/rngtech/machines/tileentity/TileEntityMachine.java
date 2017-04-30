@@ -397,15 +397,7 @@ public class TileEntityMachine extends TileEntity implements ITickable, ISidedIn
 	@Override
     public int getField(int id)
     {
-        switch (id)
-        {
-            case 0:
-                return this.progress[0];
-            case 1:
-                return 200;//this.ProcessTime;
-            default:
-                return 0;
-        }
+		return 0;
     }
 	/*
 	 * 0 = current progress
@@ -518,7 +510,7 @@ public class TileEntityMachine extends TileEntity implements ITickable, ISidedIn
     	}
 
     	if(spentForce+value <= totalForce && value >= 0){
-
+    		//System.out.println("FORCE "+value+ " for slot "+slot);
     		this.assignedForce[slot] = value;
     	}
     }
@@ -606,10 +598,6 @@ public class TileEntityMachine extends TileEntity implements ITickable, ISidedIn
     @SideOnly(Side.CLIENT)
     public int getProgressScaled(int pixels,int slot){
     	if (this.getField(1, slot) != 0 ){
-        	System.out.println("ProcessTime= " + this.getField(1, slot));
-        	System.out.println("Progress= " + this.getField(0, slot));
-        	
-        	System.out.println("Result= " + this.getField(0, slot)*pixels / this.getField(1, slot));
         	return this.getField(0, slot)*pixels / this.getField(1, slot);
     	}else{
     		return 0;

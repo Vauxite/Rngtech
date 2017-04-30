@@ -58,7 +58,10 @@ public class PacketRequestMachine implements IMessage {
 					TileEntityMachine machine = (TileEntityMachine)world.getTileEntity(message.Pos);
 					if (machine != null) {
 						//Change value on server
-						machine.setField(message.Field, message.Slot, message.Value);
+				        if (!world.isRemote)
+				        {    
+				        	machine.setField(message.Field, message.Slot, message.Value);				        	
+				        }
 					}
 				}
 				

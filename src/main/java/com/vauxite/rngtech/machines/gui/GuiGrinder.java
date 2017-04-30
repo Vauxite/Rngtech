@@ -56,7 +56,6 @@ public class GuiGrinder extends GuiContainer {
 	
 
 	
-
 	public void actionPerformed(GuiButton button) throws IOException{
 		switch(button.id){
 			case 0:
@@ -68,15 +67,14 @@ public class GuiGrinder extends GuiContainer {
 			case -1:
 				increaseForce(1,1,true);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 1, 2, (this.machineGrinder.getField(2, 1)+5),this.machineGrinder.getWorld().provider.getDimension()));
-				this.machineGrinder.markDirty();
 				break;
 			case 2:
-				increaseForce(2,1,true);
+				increaseForce(2,1,false);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 2, 2, (this.machineGrinder.getField(2, 2)-5),this.machineGrinder.getWorld().provider.getDimension()));
 		
 				break;
 			case -2:
-				increaseForce(2,1,false);
+				increaseForce(2,1,true);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 2, 2, (this.machineGrinder.getField(2, 2)+5),this.machineGrinder.getWorld().provider.getDimension()));
 				break;
 			default:
@@ -88,10 +86,10 @@ public class GuiGrinder extends GuiContainer {
 		int increment = 0;
 		switch(modifier){
 		case 1:
-			increment = 10;
+			increment = 5;
 			break;
 		case 2:
-			increment = 100;
+			increment = 10;
 			break;
 		default:
 			increment = 1;
@@ -102,7 +100,7 @@ public class GuiGrinder extends GuiContainer {
 		if(!positive){
 			newValue *=-1;
 		}
-		System.out.println("new value: "+ newValue+" for slot #"+slot);
+		System.out.println("new value: "+ newValue+" for slot #"+slot +", old value="+currentForce);
 		this.machineGrinder.setField(2,slot,newValue);
 	}
 	

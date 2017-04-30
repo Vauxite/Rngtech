@@ -45,7 +45,16 @@ public class GuiGrinder extends GuiContainer {
 	
 	public void initGui(){
 		super.initGui();
-		
+        int i = (this.width - this.xSize) / 2;
+        int j = (this.height - this.ySize) / 2;
+        
+		/*
+		 * Add GUI buttons
+		 */
+        for(int slot : machineGrinder.getInputSlots()){
+        	int index = slot - machineGrinder.getInStart();
+        	createButtonSlot(i,j,index,slot);
+        }
 		
 	}
 	public void updateScreen(){
@@ -55,51 +64,37 @@ public class GuiGrinder extends GuiContainer {
 	}
 	
 
-	
+	@Override
 	public void actionPerformed(GuiButton button) throws IOException{
 		switch(button.id){
 			case 0:
 				break;
 			case 1:
-				increaseForce(1,1,false);
+				increaseForce(1,-5);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 1, 2, (this.machineGrinder.getField(2, 1)-5),this.machineGrinder.getWorld().provider.getDimension()));
 				break;
 			case -1:
-				increaseForce(1,1,true);
+				increaseForce(1,5);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 1, 2, (this.machineGrinder.getField(2, 1)+5),this.machineGrinder.getWorld().provider.getDimension()));
 				break;
 			case 2:
-				increaseForce(2,1,false);
+				increaseForce(2,-5);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 2, 2, (this.machineGrinder.getField(2, 2)-5),this.machineGrinder.getWorld().provider.getDimension()));
 		
 				break;
 			case -2:
-				increaseForce(2,1,true);
+				increaseForce(2,5);
 				PacketHandler.network.sendToServer(new PacketRequestMachine(this.machineGrinder.getPos(), 2, 2, (this.machineGrinder.getField(2, 2)+5),this.machineGrinder.getWorld().provider.getDimension()));
 				break;
 			default:
 				return;
 		}
+		
 	}
-	private void increaseForce(int slot,int modifier,boolean positive){
+	private void increaseForce(int slot,int increment){
 		int currentForce = this.machineGrinder.getField(2, slot);
-		int increment = 0;
-		switch(modifier){
-		case 1:
-			increment = 5;
-			break;
-		case 2:
-			increment = 10;
-			break;
-		default:
-			increment = 1;
-			break;
-		}
-			
+		
 		int newValue = currentForce+increment;
-		if(!positive){
-			newValue *=-1;
-		}
 		System.out.println("new value: "+ newValue+" for slot #"+slot +", old value="+currentForce);
 		this.machineGrinder.setField(2,slot,newValue);
 	}
@@ -143,8 +138,7 @@ public class GuiGrinder extends GuiContainer {
 	    
         /* Input slots*/
         Iterator InputSlots = machineGrinder.getInputSlots().iterator();
-        while (InputSlots.hasNext()){
-        	int slot = (Integer) InputSlots.next(); 
+        for(int slot : machineGrinder.getInputSlots()){
         	int index = slot - machineGrinder.getInStart();
         	createInputSlot(i,j,index,slot);
         }   
@@ -173,6 +167,8 @@ public class GuiGrinder extends GuiContainer {
 		
     	int l = this.machineGrinder.getProgressScaled(20, slot);
         this.drawTexturedModalRect(i+60+(index)*30, j+90, 176, 14, l + 1, 20);
+	}
+	public void createButtonSlot(int i,int j,int index,int slot){
         this.buttonList.add(new GuiGrinder.Button(slot, i+57+(index)*30, this.guiTop+52, new ResourceLocation("rngtechmachines:textures/gui/buttons/subtract.png"), 0, 0));
 		this.buttonList.add(new GuiGrinder.Button(slot*-1, i+67+(index)*30, this.guiTop+52, new ResourceLocation("rngtechmachines:textures/gui/buttons/add.png"), 0, 0));
 	}
@@ -197,23 +193,6 @@ public class GuiGrinder extends GuiContainer {
         	    mc.getTextureManager().bindTexture(new ResourceLocation("rngtechmachines:textures/gui/machines/itemslot.png"));
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
-                int i = 219;
-                int j = 0;
-
-                if (!this.enabled)
-                {
-                    j += this.width * 2;
-                }
-                else if (this.selected)
-                {
-                    j += this.width * 1;
-                }
-                else if (this.hovered)
-                {
-                    j += this.width * 3;
-                }
-
-                //this.drawTexturedModalRect(this.xPosition, this.yPosition, j, 219, this.width, this.height);
 
                 if (!GuiGrinder.GRINDER_GUI_TEXTURE.equals(this.iconTexture))
                 	

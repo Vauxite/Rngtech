@@ -1,0 +1,30 @@
+# Base Items
+item.ingotCopper.name=Copper Ingot
+
+# Base blocks
+tile.oreCopper.name=Copper ore
+
+
+#Machine Frame
+tile.machineframet0.name=Machine Frame T0
+tile.machineFramet1.name=Machine Frame T1
+tile.machineFramet2.name=Machine Frame T2
+tile.machineFramet3.name=Machine Frame T3
+tile.machineFramet4.name=Machine Frame T4
+
+#Unqiue Machines
+tile.grinder.name=Grinder
+tile.windturbine.name=Wind Turbine
+
+#Circuits
+item.circuitt1.name=Circuit T1
+item.circuitt2.name=Circuit T2
+item.circuitt3.name=Circuit T3
+item.circuitt4.name=Circuit T4
+item.testcircuit.name=Test Circuit
+
+#Grindstones
+item.grindstonet0.name=Flint grindstone
+item.grindstonet1.name=Iron grindstone
+item.grindstonet3.name=Diamond grindstone
+itemGroup.rngtechmachines=RNGtech

@@ -1,0 +1,62 @@
+{
+    "parent":"block/block",
+    "textures": {
+        "0": "rngtechmachines:blocks/windturbine/stick",
+        "1": "rngtechmachines:blocks/windturbine/reverse_paper",
+        "2": "rngtechmachines:blocks/windturbine/paper"
+    },
+    "elements": [
+        {
+            "name": "Shaft",
+            "from": [ 7.0, 0.0, 7.0 ], 
+            "to": [ 9.0, 16.0, 9.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 9.0, 0.0, 11.0, 16.0 ] },
+                "east": { "texture": "#0", "uv": [ 4.0, 0.0, 6.0, 16.0 ] },
+                "south": { "texture": "#0", "uv": [ 11.0, 0.0, 13.0, 16.0 ] },
+                "west": { "texture": "#0", "uv": [ 8.0, 0.0, 10.0, 16.0 ] },
+                "up": { "texture": "#0", "uv": [ 11.0, 3.0, 13.0, 5.0 ] },
+                "down": { "texture": "#0", "uv": [ 7.0, 1.0, 9.0, 3.0 ] }
+            }
+        },
+        {
+            "name": "Paper",
+            "from": [ 7.0, 3.0, 8.0 ], 
+            "to": [ 2.0, 8.0, 7.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 7.0 ] },
+                "east": { "texture": "#2", "uv": [ 12.0, 1.0, 11.0, 6.0 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "west": { "texture": "#2", "uv": [ 13.0, 4.0, 12.0, 9.0 ] },
+                "up": { "texture": "#2", "uv": [ 10.0, 9.0, 5.0, 8.0 ] },
+                "down": { "texture": "#2", "uv": [ 13.0, 3.0, 8.0, 2.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 7.0, 10.0, 9.0 ], 
+            "to": [ 2.0, 15.0, 8.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "east": { "texture": "#2", "uv": [ 6.0, 1.0, 8.0, 16.0 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "west": { "texture": "#2", "uv": [ 6.0, 3.0, 12.0, 8.0 ] },
+                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 5.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 14.0, 6.0, 9.0 ], 
+            "to": [ 9.0, 11.0, 8.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "east": { "texture": "#2", "uv": [ 9.0, 2.0, 8.0, 7.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 5.0 ] },
+                "west": { "texture": "#2", "uv": [ 6.0, 4.0, 5.0, 9.0 ] },
+                "up": { "texture": "#2", "uv": [ 12.0, 6.0, 7.0, 5.0 ] },
+                "down": { "texture": "#2", "uv": [ 14.0, 10.0, 9.0, 9.0 ] }
+            }
+        }
+    ]
+}
